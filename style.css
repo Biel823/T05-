@@ -1,0 +1,247 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #243247;
+}
+
+/* Dashboard Header */
+header {
+    background: #246a55;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    margin: 0 0 12px;
+    font-size: 32px;
+}
+
+header p {
+    margin: 0 auto;
+    max-width: 700px;
+    line-height: 1.6;
+    color: #e0f2eb;
+}
+
+/* Dashboard Layout */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 1400px;
+    margin: 35px auto;
+    padding: 0 24px;
+}
+
+/* Individual Chart Cards */
+.chart-card {
+    background-color: white;
+    border: 1px solid #e0e6ed;
+    border-radius: 14px;
+    padding: 24px;
+    min-width: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.chart-card h2 {
+    margin: 0 0 10px;
+    font-size: 21px;
+    color: #193d35;
+}
+
+.chart-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #667085;
+    margin: 0 0 20px;
+}
+
+/* Chart Containers */
+#scatter-chart,
+#line-chart,
+#bar-chart,
+#donut-chart {
+    width: 100%;
+    min-height: 300px;
+}
+
+/* Responsive SVG */
+.chart-card svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+/* Footer */
+footer {
+    background-color: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* Tablet and Mobile Screens */
+@media (max-width: 850px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 0 16px;
+    }
+
+    .chart-card {
+        padding: 18px;
+    }
+
+    header h1 {
+        font-size: 26px;
+    }
+}
+
+/* Small Mobile Screens */
+@media (max-width: 480px) {
+    header {
+        padding: 30px 16px;
+    }
+
+    .dashboard {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    .chart-card {
+        padding: 14px;
+    }
+
+    .chart-card h2 {
+        font-size: 18px;
+    }
+}
+
+.hero-header {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        120deg,
+        #123c35 0%,
+        #195c4d 55%,
+        #34275f 100%
+    );
+    color: white;
+    padding: 75px 30px;
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+}
+
+/* Soft background glow */
+.hero-glow {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    right: -120px;
+    top: -250px;
+    background: radial-gradient(
+        circle,
+        rgba(181, 132, 255, 0.32),
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: auto;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 17px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #a5e8cf;
+    border-radius: 50%;
+}
+
+.hero-header h1 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 22px;
+    letter-spacing: -1.5px;
+}
+
+.hero-header h1 span {
+    color: #a5e8cf;
+}
+
+.hero-header p {
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto 30px;
+    color: #d1e6df;
+}
+
+.hero-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-tags span {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 10px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    color: #e4f3ec;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .hero-header {
+        padding: 55px 20px;
+        border-radius: 0 0 22px 22px;
+    }
+
+    .hero-header h1 {
+        letter-spacing: -0.5px;
+    }
+
+    .hero-tags {
+        gap: 8px;
+    }
+
+    .hero-tags span {
+        font-size: 11px;
+        padding: 8px 12px;
+    }
+}

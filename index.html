@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>T05 - TV Energy Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+ <header class="hero-header">
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            <span class="status-dot"></span>
+            INTERACTIVE DATA VISUALISATION
+        </div>
+
+        <h1>
+            TV Energy <span>Dashboard.</span>
+        </h1>
+
+        <p>
+            Discover how screen size, display technology
+            and electricity prices shape energy consumption
+            through interactive insights.
+        </p>
+
+        <div class="hero-tags">
+            <span>4 Visualisations</span>
+            <span>TV Energy Insights</span>
+            <span>1998–2024 Price Trends</span>
+        </div>
+
+    </div>
+</header>
+
+    <main class="dashboard">
+
+        <!-- Chart 1: Scatter Plot -->
+        <section class="chart-card">
+            <h2>TV Energy Consumption</h2>
+            <p>
+                Explore the relationship between
+                TV screen size and energy consumption.
+            </p>
+            <div id="scatter-chart"></div>
+        </section>
+
+        <!-- Chart 2: Line Chart -->
+        <section class="chart-card">
+            <h2>Electricity Spot Prices</h2>
+            <p>
+                Explore annual average electricity
+                spot prices in Australia from 1998 to 2024.
+            </p>
+            <div id="line-chart"></div>
+        </section>
+
+        <!-- Chart 3: Bar Chart -->
+        <section class="chart-card">
+            <h2>Energy by Screen Technology</h2>
+            <p>
+                Compare average annual energy consumption
+                across LCD, LED and OLED televisions.
+            </p>
+            <div id="bar-chart"></div>
+        </section>
+
+        <!-- Chart 4: Donut Chart -->
+        <section class="chart-card">
+            <h2>Screen Technology Distribution</h2>
+            <p>
+                Explore the distribution of
+                television screen technologies.
+            </p>
+            <div id="donut-chart"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>T05 - D3.js Data Visualisation</p>
+    </footer>
+
+    <!-- D3 Library -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- One JavaScript file per chart -->
+    <script src="scatter.js"></script>
+    <script src="line.js"></script>
+    <script src="bar.js"></script>
+    <script src="donut.js"></script>
+
+    <!-- CHART 1: Scatter Plot -->
+    <script>
+        d3.csv("data/Ex5_TV_energy.csv", d => ({
+            brand: d.brand,
+            screen_tech: d.screen_tech,
+            screensize: +d.screensize,
+            energy_consumpt: +d.energy_consumpt,
+            star2: +d.star2,
+            count: +d.count
+        }))
+        .then(data => {
+            console.log("Scatter chart data:", data);
+            createScatterPlot(data);
+        })
+        .catch(error => {
+            console.error("Scatter chart error:", error);
+        });
+    </script>
+
+    <!-- CHART 2: Line Chart -->
+    <script>
+        d3.csv("data/Ex5_ARE_Spot_Prices.csv", d => ({
+            year: +d.Year,
+            price: +d["Average Price (notTas-Snowy)"]
+        }))
+        .then(data => {
+
+            data = data.filter(d =>
+                Number.isFinite(d.year) &&
+                Number.isFinite(d.price)
+            );
+
+            data.sort((a, b) => a.year - b.year);
+
+            console.log("Line chart data:", data);
+            createLineChart(data);
+        })
+        .catch(error => {
+            console.error("Line chart error:", error);
+        });
+    </script>
+
+    <!-- CHART 3: Bar Chart -->
+    <script>
+        d3.csv(
+            "data/Ex5_TV_energy_Allsizes_byScreenType.csv",
+            d => ({
+                screen_tech: d["Screen_Tech"],
+                energy: +d[
+                    "Mean(Labelled energy consumption (kWh/year))"
+                ]
+            })
+        )
+        .then(data => {
+            console.log("Bar chart data:", data);
+            createBarChart(data);
+        })
+        .catch(error => {
+            console.error("Bar chart error:", error);
+        });
+    </script>
+
+    <!-- CHART 4: Donut Chart -->
+    <script>
+        d3.csv("data/Ex5_TV_energy.csv", d => ({
+            screen_tech: d.screen_tech,
+            count: +d.count
+        }))
+        .then(data => {
+            console.log("Donut chart data:", data);
+            createDonutChart(data);
+        })
+        .catch(error => {
+            console.error("Donut chart error:", error);
+        });
+    </script>
+
+</body>
+</html>
